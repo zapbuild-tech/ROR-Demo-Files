@@ -1,0 +1,27 @@
+	<div class="edit_table">
+		<div style="float:left">
+		<%=	
+		error_messages_for(
+				  :user, 
+				  :header_message => " ", 
+				  :message => " ", 
+				  :header_tag => :p
+				)
+		%>
+		</div>
+			<% form_for :user, @user do |u| %>
+				<%= u.label(:role, "Type:") %>
+				<%= u.select :role, options_for_select(@role,(@user && @user.role) ? @user.role : 3),{:autofocus => true} %>
+				<%= u.label(:first_name, "First Name:") %>
+				<%= u.text_field(:first_name,{:maxlength=>20}) %>
+				<%= u.label(:last_name, "Last Name:") %>
+				<%= u.text_field(:last_name,{:maxlength=>20}) %>
+				<%= u.label(:contact_no, "Contact No:") %>
+				<%= u.text_field(:contact_no,{:maxlength=>15}) %>
+				<%= u.label(:email, "Email:") %>
+				<%= u.text_field(:email,{:maxlength=>30}) %>
+				<%= (@user.nil?) ? '' : ((@user.id.nil?) ? '' : u.hidden_field(:id))   %>
+	<button class="ceate_button" type="submit"><%= (@user.nil?)?'Create':((@user.id.nil?) ? 'Create' : 'Save Changes')%></button>
+	<% end%>
+	</div>
+	
